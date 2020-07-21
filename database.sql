@@ -1,3 +1,13 @@
+
+create user shehreen identified by oliveoil1000;
+grant all privileges to shehreen;
+
+disc;
+
+connect shehreen/oliveoil1000;
+
+
+
 create table inventory(
 	id number primary key,
 	name varchar2(20),
