@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -25,6 +26,7 @@ public class Customer_Login extends javax.swing.JFrame {
      */
     public Customer_Login() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     
     public Connection OracleConnection() {
@@ -59,15 +61,16 @@ public class Customer_Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1594, 907));
+        setResizable(false);
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(1594, 207));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2055, 1138));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 100, -1, -1));
 
         Name.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         Name.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -76,7 +79,7 @@ public class Customer_Login extends javax.swing.JFrame {
                 NameActionPerformed(evt);
             }
         });
-        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 740, -1));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 740, -1));
 
         Phone_No.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         Phone_No.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -85,19 +88,19 @@ public class Customer_Login extends javax.swing.JFrame {
                 Phone_NoActionPerformed(evt);
             }
         });
-        jPanel1.add(Phone_No, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 740, -1));
+        jPanel1.add(Phone_No, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 740, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Phone No : ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Name : ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, -1, -1));
 
         Enter.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         Enter.setText("Enter");
@@ -106,13 +109,13 @@ public class Customer_Login extends javax.swing.JFrame {
                 EnterActionPerformed(evt);
             }
         });
-        jPanel1.add(Enter, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 560, -1, -1));
+        jPanel1.add(Enter, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 560, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(2055, 1138));
         jLabel2.setMinimumSize(new java.awt.Dimension(2055, 1138));
         jLabel2.setPreferredSize(new java.awt.Dimension(2055, 1138));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +125,7 @@ public class Customer_Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

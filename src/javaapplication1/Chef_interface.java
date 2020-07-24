@@ -7,7 +7,7 @@ package javaapplication1;
 //import servir_project.UI.FirstPage;
 //import servir_project.UI.Chef_menu;
 //import servir_project.UI.Chef_inventory;
-
+import javax.swing.*;
 /**
  *
  * @author shehr
@@ -18,8 +18,9 @@ public class Chef_interface extends javax.swing.JFrame {
      * Creates new form Chef_interface
      */
     public Chef_interface() {
-        initComponents();
-    }
+        initComponents(); 
+        setExtendedState(JFrame.MAXIMIZED_BOTH);            
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,45 +39,52 @@ public class Chef_interface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2055, 1138));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Chef Interface");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 115, 474, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(771, 115, 320, -1));
 
         menu.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         menu.setText("Menu");
+        menu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuMouseClicked(evt);
             }
         });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 355, 207, -1));
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 360, 207, -1));
 
         inventory.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         inventory.setText("Inventory");
+        inventory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         inventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inventoryActionPerformed(evt);
             }
         });
-        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 467, 207, -1));
+        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 470, 207, -1));
 
         start.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         start.setText("Go to Start");
+        start.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startMouseClicked(evt);
             }
         });
-        jPanel1.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 581, -1, -1));
+        jPanel1.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

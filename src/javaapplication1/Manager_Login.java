@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import java.sql.*;
+import javax.swing.JFrame;
 
 //import servir_project.UI.Manager_inventory;
 //import servir_project.UI.Manager_interface;
@@ -31,6 +32,7 @@ public class Manager_Login extends javax.swing.JFrame {
     public Manager_Login() {
         initComponents();
         OracleConnection();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -54,35 +56,38 @@ public class Manager_Login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2055, 1138));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Manager Verification");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 114, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Please enter valid username and password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 199, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 477, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Username: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(287, 346, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, -1, -1));
 
         username.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 343, 658, -1));
+        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, 658, -1));
 
         password.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 474, 658, -1));
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 658, -1));
 
         cancel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         cancel.setText("Cancel");
@@ -96,7 +101,7 @@ public class Manager_Login extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(885, 657, -1, -1));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 660, -1, -1));
 
         login.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         login.setText("Login");
@@ -110,11 +115,11 @@ public class Manager_Login extends javax.swing.JFrame {
                 loginActionPerformed(evt);
             }
         });
-        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 657, -1, -1));
+        jPanel1.add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 660, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
