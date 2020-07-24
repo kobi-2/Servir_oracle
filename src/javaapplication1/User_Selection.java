@@ -112,7 +112,7 @@ public class User_Selection extends javax.swing.JFrame {
 
     private void customer_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customer_buttonActionPerformed
         dispose();
-        new CustomerInterface().setVisible(true);
+        new Customer_Login().setVisible(true);
     }//GEN-LAST:event_customer_buttonActionPerformed
 
     /**
