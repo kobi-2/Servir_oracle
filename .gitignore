@@ -1,2 +1,22 @@
+#NetBeans specific#
+
 build/
-dist/Servir_Project.jar
+dist/
+**/nbproject/private/
+
+#Class files#
+*.class
+
+#Package files#
+*.jar
+*.war
+*.ear
+
+#some more#
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+nbbuild/
+nbdist/
+.nb-gradle/
+
+
