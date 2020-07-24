@@ -1,0 +1,61 @@
+
+pl/sql can be used in update, insert, delete functions of these files
+
+Chef_inventory 
+Chef_menu
+customer_interface
+customer_cart
+manager_inventory 
+manager_menu
+
+
+-------------------------------------
+customer
+-------------------------------------
+customer orders. gets to cart item first(?).
+
+Then this whole order (might be with multiple items) gets inserted into ALL_ORDERS/ALL_SALES tables.
+
+** NESTED TABLE** 
+
+This ALL_ORDERS/ALL_SALES is a special table in a way that it is a nested table. 
+It has all the necessary fields/attributes for an order, one of which is the item_list. 
+This column is a table itself which holds the ordered items information, which it gets from cart(?).
+
+
+The ALL_SALES/ALL_ORDERS table may contain
+id/slip-number, date-time, customer_id, total_payable, 
+
+
+-------------------------------------
+customer id
+-------------------------------------
+customer id is stored in the database, for any sort of reference needed.
+A customer_info table can be maintained for this purpose, with attributes like id, name, phoneNumber.
+
+We can create a function that returns customer id if the customer is old, else a new customer id for a new customer.
+it checks with the phone number for that.
+
+
+
+-------------------------------------
+cursor
+-------------------------------------
+cursor can be used to check whether certain people get discount or not. 
+if we can make a total_sale table, which would store all the sells everyday, 
+then we can use cursor to loop through how much discount can that specific customer get,
+given his/her last 30 days of buying stuff.
+
+for example, customer X buys 500 tk worth foods. then we check total how much money s/he has spent in the last 30 days.
+lets say that's 2030 taka. so we cross check with discount table (use cursor here) to see how much discount can s/he get for that amount.
+
+-------------------------------------
+trigger
+-------------------------------------
+the scenario I had for trigger is that whenever a product is out of stock, then a trigger will automatically insert an order for that product
+in the 'order_from_vendor' table. for that, obviously we need a product-vendor table.
+
+
+this is getting so difficult! RIP us.
+
+
