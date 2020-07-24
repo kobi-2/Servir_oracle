@@ -56,3 +56,23 @@ begin
 	from dual;
 end;
 /
+
+create table customer(
+	customer_id number primary key,
+	name varchar2(20),
+	phone_no number,
+	id_generation_date date
+);
+
+create sequence customer_seq start with 1;
+
+create or replace trigger id_increment_customer
+before insert on customer
+for each row
+begin
+	select customer_seq.nextval
+	into :new.customer_id
+	from dual;
+end;
+/
+	
