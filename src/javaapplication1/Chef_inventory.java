@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import javax.swing.JFrame;
 
 /**
  *
@@ -30,6 +31,7 @@ public class Chef_inventory extends javax.swing.JFrame {
      */
     public Chef_inventory() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         fillTable();
     }
 
@@ -109,12 +111,16 @@ public class Chef_inventory extends javax.swing.JFrame {
         chef_interface = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         clear = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         textfield_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setMaximumSize(new java.awt.Dimension(2055, 1138));
+        jPanel1.setMinimumSize(new java.awt.Dimension(2055, 1138));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2055, 1138));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,17 +128,17 @@ public class Chef_inventory extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Chef Inventory ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 53, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 60, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Amount");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Search Name: ");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, -1, -1));
 
         textfield_name.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfield_name.addActionListener(new java.awt.event.ActionListener() {
@@ -140,10 +146,10 @@ public class Chef_inventory extends javax.swing.JFrame {
                 textfield_nameActionPerformed(evt);
             }
         });
-        jPanel2.add(textfield_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 737, -1));
+        jPanel2.add(textfield_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 737, -1));
 
         textfield_amount.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel2.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 737, -1));
+        jPanel2.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 737, -1));
 
         update.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         update.setText("Extract");
@@ -152,7 +158,7 @@ public class Chef_inventory extends javax.swing.JFrame {
                 updateActionPerformed(evt);
             }
         });
-        jPanel2.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(1208, 187, 174, -1));
+        jPanel2.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 190, 174, -1));
 
         textfieldSearch.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfieldSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +171,7 @@ public class Chef_inventory extends javax.swing.JFrame {
                 textfieldSearchKeyReleased(evt);
             }
         });
-        jPanel2.add(textfieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 608, -1));
+        jPanel2.add(textfieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, 608, -1));
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -198,7 +204,7 @@ public class Chef_inventory extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 521, 1373, 240));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 530, 1373, 240));
 
         chef_interface.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         chef_interface.setText("Back to Chef Interface");
@@ -207,12 +213,12 @@ public class Chef_inventory extends javax.swing.JFrame {
                 chef_interfaceMouseClicked(evt);
             }
         });
-        jPanel2.add(chef_interface, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 780, -1, -1));
+        jPanel2.add(chef_interface, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 790, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Name");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
         clear.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         clear.setText("Clear");
@@ -221,11 +227,10 @@ public class Chef_inventory extends javax.swing.JFrame {
                 clearActionPerformed(evt);
             }
         });
-        jPanel2.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(1208, 268, 174, -1));
+        jPanel2.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 270, 174, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         textfield_id.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jPanel2.add(textfield_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 188, 737, -1));
@@ -234,18 +239,20 @@ public class Chef_inventory extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,9 +405,9 @@ public class Chef_inventory extends javax.swing.JFrame {
     private javax.swing.JButton clear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

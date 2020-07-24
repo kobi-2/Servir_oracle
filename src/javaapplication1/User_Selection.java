@@ -6,6 +6,7 @@
 package javaapplication1;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class User_Selection extends javax.swing.JFrame {
      */
     public User_Selection() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -39,20 +41,24 @@ public class User_Selection extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(getMaximumSize());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1594, 907));
+        jPanel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(getMaximumSize());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Restaurant Management System");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, 118));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, -1, 118));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("User Selection");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 195, -1, 83));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 200, -1, 83));
 
         manager_button.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         manager_button.setText("Manager");
@@ -62,7 +68,7 @@ public class User_Selection extends javax.swing.JFrame {
                 manager_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(manager_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 379, 426, 60));
+        jPanel1.add(manager_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 426, 60));
 
         chef_button.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         chef_button.setText("Chef");
@@ -71,7 +77,7 @@ public class User_Selection extends javax.swing.JFrame {
                 chef_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(chef_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 479, 426, 60));
+        jPanel1.add(chef_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 490, 426, 60));
 
         customer_button.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         customer_button.setText("Customer");
@@ -80,11 +86,11 @@ public class User_Selection extends javax.swing.JFrame {
                 customer_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(customer_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(517, 576, 426, 60));
+        jPanel1.add(customer_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 580, 426, 60));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

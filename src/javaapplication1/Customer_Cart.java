@@ -20,6 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
 import java.sql.*;
+import javax.swing.JFrame;
 
 /**
  *
@@ -35,6 +36,7 @@ public class Customer_Cart extends javax.swing.JFrame {
         fillTable();
         UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
         UIManager.put("OptionPane.buttonFont", new Font("Arial", Font.PLAIN, 24));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public Connection OracleConnection() {
@@ -164,6 +166,7 @@ public class Customer_Cart extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -172,12 +175,12 @@ public class Customer_Cart extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cart");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, 569, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, 100, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Press done when you've finished ordering ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 144, 861, 59));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 670, 59));
 
         menu.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         menu.setText("Go to Menu");
@@ -186,7 +189,7 @@ public class Customer_Cart extends javax.swing.JFrame {
                 menuMouseClicked(evt);
             }
         });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 737, 397, -1));
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 740, 397, -1));
 
         Done_Button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         Done_Button.setText("Done");
@@ -200,7 +203,7 @@ public class Customer_Cart extends javax.swing.JFrame {
                 Done_ButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(Done_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 804, 397, -1));
+        jPanel1.add(Done_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 810, 397, -1));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -233,7 +236,7 @@ public class Customer_Cart extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 302, 883, 553));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 883, 553));
 
         remove.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         remove.setText("Remove from Cart");
@@ -247,12 +250,12 @@ public class Customer_Cart extends javax.swing.JFrame {
                 removeActionPerformed(evt);
             }
         });
-        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 225, 397, 54));
+        jPanel1.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 230, 397, 54));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Amount");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 231, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 230, -1, -1));
 
         textfield_amount.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfield_amount.addActionListener(new java.awt.event.ActionListener() {
@@ -260,11 +263,11 @@ public class Customer_Cart extends javax.swing.JFrame {
                 textfield_amountActionPerformed(evt);
             }
         });
-        jPanel1.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 228, 258, -1));
+        jPanel1.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 230, 258, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         textfield_id.setBackground(new java.awt.Color(204, 255, 204));
         textfield_id.setBorder(null);

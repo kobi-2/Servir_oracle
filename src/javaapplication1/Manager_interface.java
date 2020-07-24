@@ -6,6 +6,9 @@
 package javaapplication1;
 //import servir_project.UI.FirstPage;
 
+import javax.swing.JFrame;
+
+
 /**
  *
  * @author shehr
@@ -17,6 +20,7 @@ public class Manager_interface extends javax.swing.JFrame {
      */
     public Manager_interface() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -36,15 +40,18 @@ public class Manager_interface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2055, 1138));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Manager Interface");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(564, 134, 593, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 130, 390, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jButton1.setText("Menu");
@@ -53,7 +60,7 @@ public class Manager_interface extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 355, 207, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 350, 207, -1));
 
         inventory.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         inventory.setText("Inventory");
@@ -62,7 +69,7 @@ public class Manager_interface extends javax.swing.JFrame {
                 inventoryMouseClicked(evt);
             }
         });
-        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 467, 207, -1));
+        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 470, 207, -1));
 
         start.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         start.setText("Go to Start");
@@ -71,11 +78,11 @@ public class Manager_interface extends javax.swing.JFrame {
                 startMouseClicked(evt);
             }
         });
-        jPanel1.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(642, 581, -1, -1));
+        jPanel1.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 580, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
