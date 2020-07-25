@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import javax.swing.JFrame;
 //import javax.swing.UIManager;
 //import java.awt.Font;
 
@@ -33,6 +34,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
         initComponents();
         //MySqlConnection();
         fillTable();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public Connection OracleConnection() {
@@ -81,7 +83,8 @@ public final class Manager_Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1593, 908));
+        jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(2055, 1138));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -115,25 +118,25 @@ public final class Manager_Menu extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 595, 1200, 187));
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 1200, 187));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Manager Menu");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(586, 55, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Name         : ");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 211, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 211, -1));
 
         textfield_name.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel2.add(textfield_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 608, -1));
+        jPanel2.add(textfield_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 608, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Price           : ");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, -1));
 
         textfield_price.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfield_price.addActionListener(new java.awt.event.ActionListener() {
@@ -141,20 +144,20 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 textfield_priceActionPerformed(evt);
             }
         });
-        jPanel2.add(textfield_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 608, -1));
+        jPanel2.add(textfield_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 290, 608, -1));
 
         textfield_amount.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel2.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 608, -1));
+        jPanel2.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 608, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Amount       :");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 211, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 211, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Search Item    :");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(326, 508, -1, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, -1, -1));
 
         textfield_search.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfield_search.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +170,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 textfield_searchKeyReleased(evt);
             }
         });
-        jPanel2.add(textfield_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 505, 608, -1));
+        jPanel2.add(textfield_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 490, 608, -1));
 
         managerInterface.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         managerInterface.setText("Back to Manager Interface");
@@ -176,7 +179,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 managerInterfaceActionPerformed(evt);
             }
         });
-        jPanel2.add(managerInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 820, -1, -1));
+        jPanel2.add(managerInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 810, -1, -1));
 
         delete_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         delete_button.setText("Delete");
@@ -185,7 +188,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 delete_buttonActionPerformed(evt);
             }
         });
-        jPanel2.add(delete_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 402, 295, -1));
+        jPanel2.add(delete_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 390, 295, -1));
 
         update_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         update_button.setText("Update");
@@ -194,7 +197,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 update_buttonActionPerformed(evt);
             }
         });
-        jPanel2.add(update_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 333, 295, -1));
+        jPanel2.add(update_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 320, 295, -1));
 
         insert_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         insert_button.setText("Insert");
@@ -203,7 +206,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 insert_buttonActionPerformed(evt);
             }
         });
-        jPanel2.add(insert_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 255, 295, -1));
+        jPanel2.add(insert_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 240, 295, -1));
 
         clear_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         clear_button.setText("Clear");
@@ -212,11 +215,11 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 clear_buttonActionPerformed(evt);
             }
         });
-        jPanel2.add(clear_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 188, 295, -1));
+        jPanel2.add(clear_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 180, 295, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         textfield_id.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jPanel2.add(textfield_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 610, -1));
@@ -225,11 +228,11 @@ public final class Manager_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1594, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

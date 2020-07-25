@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 //import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.*;
+import javax.swing.JFrame;
 
 /**
  *
@@ -34,6 +35,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         initComponents();
         fillTable();
         //MySqlConnection();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public Connection OracleConnection() {
@@ -121,9 +123,11 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         textfield_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1593, 908));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2055, 1138));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -157,25 +161,25 @@ public final class Manager_Inventory extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 568, 1319, 220));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 570, 1319, 220));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Manager Inventory");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(553, 52, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Name              : ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
 
         textfield_name.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel1.add(textfield_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 608, -1));
+        jPanel1.add(textfield_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 608, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Amount (unit)  : ");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
 
         textfield_amount.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfield_amount.addActionListener(new java.awt.event.ActionListener() {
@@ -183,20 +187,20 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 textfield_amountActionPerformed(evt);
             }
         });
-        jPanel1.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 608, -1));
+        jPanel1.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 608, -1));
 
         textfield_supplierid.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel1.add(textfield_supplierid, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 608, -1));
+        jPanel1.add(textfield_supplierid, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 608, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Supplier ID      :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 245, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 245, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Search Item    :");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 505, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 510, -1, -1));
 
         textfield_search.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         textfield_search.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +213,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 textfield_searchKeyReleased(evt);
             }
         });
-        jPanel1.add(textfield_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 502, 608, -1));
+        jPanel1.add(textfield_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 510, 608, -1));
 
         managerInterface.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         managerInterface.setText("Back to Manager Interface");
@@ -218,7 +222,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 managerInterfaceActionPerformed(evt);
             }
         });
-        jPanel1.add(managerInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 800, -1, -1));
+        jPanel1.add(managerInterface, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 800, -1, -1));
 
         delete_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         delete_button.setText("Delete");
@@ -227,7 +231,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 delete_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(delete_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1125, 396, 295, -1));
+        jPanel1.add(delete_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 400, 295, -1));
 
         update_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         update_button.setText("Update");
@@ -236,7 +240,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 update_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(update_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1125, 327, 295, -1));
+        jPanel1.add(update_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 330, 295, -1));
 
         insert_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         insert_button.setText("Insert");
@@ -245,7 +249,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 insert_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(insert_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1125, 258, 295, -1));
+        jPanel1.add(insert_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 260, 295, -1));
 
         clear_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         clear_button.setText("Clear");
@@ -254,11 +258,11 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 clear_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(clear_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1125, 189, 295, -1));
+        jPanel1.add(clear_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 190, 295, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1594, 907));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         textfield_id.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jPanel1.add(textfield_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 200, 608, -1));
@@ -268,13 +272,13 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1594, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
