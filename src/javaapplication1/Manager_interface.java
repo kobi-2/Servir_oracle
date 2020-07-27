@@ -36,11 +36,11 @@ public class Manager_interface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         inventory = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         start = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -60,7 +60,7 @@ public class Manager_interface extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 350, 207, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(827, 350, 320, -1));
 
         inventory.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         inventory.setText("Inventory");
@@ -69,7 +69,16 @@ public class Manager_interface extends javax.swing.JFrame {
                 inventoryMouseClicked(evt);
             }
         });
-        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 470, 207, -1));
+        jPanel1.add(inventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 440, 320, -1));
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jButton2.setText("Inventory Warning");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 530, -1, -1));
 
         start.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         start.setText("Go to Start");
@@ -78,7 +87,7 @@ public class Manager_interface extends javax.swing.JFrame {
                 startMouseClicked(evt);
             }
         });
-        jPanel1.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 580, -1, -1));
+        jPanel1.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 620, 320, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -115,6 +124,12 @@ public class Manager_interface extends javax.swing.JFrame {
         new Manager_Menu().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new InventoryWarning().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -147,6 +162,7 @@ public class Manager_interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton inventory;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

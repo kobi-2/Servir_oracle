@@ -87,7 +87,7 @@ public class Chef_inventory extends javax.swing.JFrame {
         model.setRowCount(0); // Empty/clear the table
 
         for (InventoryBean inventory : al) {
-            Object row[] = {inventory.getId(), inventory.getName(), inventory.getAmount(), inventory.getSupplierid()};
+            Object row[] = {inventory.getId(), inventory.getName(), inventory.getAmount(), inventory.getPrice()};
             model.addRow(row);
         }
     }
@@ -119,7 +119,6 @@ public class Chef_inventory extends javax.swing.JFrame {
         textfield_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setMaximumSize(new java.awt.Dimension(2055, 1138));
@@ -183,7 +182,7 @@ public class Chef_inventory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Amount", "Supplier's ID"
+                "ID", "Name", "Amount", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -342,7 +341,7 @@ public class Chef_inventory extends javax.swing.JFrame {
                 row[0] = al.get(i).getId();
                 row[1] = al.get(i).getName();
                 row[2] = al.get(i).getAmount();
-                row[3] = al.get(i).getSupplierid();
+                row[3] = al.get(i).getPrice();
                 model.addRow(row);
             }
         } catch (Exception e) {
