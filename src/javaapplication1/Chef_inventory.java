@@ -10,6 +10,7 @@ import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,6 +30,7 @@ public class Chef_inventory extends javax.swing.JFrame {
     /**
      * Creates new form Chef_inventory
      */
+    CallableStatement callstate;
     public Chef_inventory() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -49,6 +51,7 @@ public class Chef_inventory extends javax.swing.JFrame {
         }
     }
 
+    //getting all the column values from a table (all rows)
     public ArrayList<InventoryBean> retrieveData() {
         ArrayList<InventoryBean> al = new ArrayList<InventoryBean>();
         try {
@@ -69,7 +72,8 @@ public class Chef_inventory extends javax.swing.JFrame {
         return al;
 
     }
-
+    
+    //showing data for a particular index id (single row)
     public void showItemToFields(int index) {
         textfield_id.setText(Integer.toString(retrieveData().get(index).getId()));
         textfield_name.setText(retrieveData().get(index).getName());
@@ -277,41 +281,38 @@ public class Chef_inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        if ((textfield_id.getText() != null || textfield_name != null) || textfield_amount != null) {
-            String qry;
-            PreparedStatement ps;
+
+        if ((textfield_id.getText() != null && textfield_name != null) && textfield_amount != null) {
+            
             Connection conn = OracleConnection();
-            int ind = jTable1.getSelectedRow();
-            int newamount = retrieveData().get(ind).getAmount();
-            if (newamount >= (Integer.parseInt(textfield_amount.getText()))) {
-                try {
-                    qry = "update inventory set Amount=Amount-? where id=?";
-                    ps = conn.prepareStatement(qry);
-                    
-                    ps.setInt(1, Integer.parseInt(textfield_amount.getText()));
-                    ps.setInt(2, Integer.parseInt(textfield_id.getText()));
+            
+            try {
+                callstate = conn.prepareCall("{call updateChefInventory(?,?,?)}");
+                callstate.registerOutParameter(3, Types.VARCHAR);
 
-                    int res = ps.executeUpdate();
-                    fillTable();
-                    if (res >= 1) {
-                        //JOptionPane.showMessageDialog(null," Item"+ " has been taken.....");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Item extraction Failed ....");
-                    }
-                } catch (HeadlessException | NumberFormatException | SQLException e) {
-                    JOptionPane.showMessageDialog(null, e);
-                }
-            } else {
-                UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 24));
-                UIManager.put("OptionPane.buttonFont", new Font("Arial", Font.PLAIN, 24));
-                JOptionPane.showMessageDialog(null, "There is insufficient amount");
+                int newAmount = Integer.parseInt(textfield_amount.getText());
+                int newId = Integer.parseInt(textfield_id.getText());
 
+                callstate.setInt(1,newId);
+                callstate.setInt(2,newAmount);
+
+                callstate.execute();
+
+                String finalResult= callstate.getString(3).toString();
+                JOptionPane.showMessageDialog(null, finalResult);
+
+                fillTable();
+
+            } 
+            catch (HeadlessException | NumberFormatException | SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
             }
+                
             textfield_id.setText("");
             textfield_name.setText("");
             textfield_amount.setText("");
         } else {
-            JOptionPane.showMessageDialog(null, "All fields are mandatory.......");
+            JOptionPane.showMessageDialog(null, "Please select an item");
         }
 
     }//GEN-LAST:event_updateActionPerformed

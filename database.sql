@@ -12,7 +12,14 @@ create table inventory(
 	id number primary key,
 	name varchar2(20),
 	amount number,
-	supplier_id number unique
+	price number
+);
+
+create table inventoryWarning(
+	id number primary key,
+	name varchar2(20),
+	amount number,
+	price number	
 );
 	
 
@@ -73,6 +80,74 @@ begin
 	select customer_seq.nextval
 	into :new.customer_id
 	from dual;
+end;
+/
+
+create sequence inventoryWarning_seq start with 1;
+
+create or replace trigger id_increment_item_warning
+before insert on inventoryWarning
+for each row
+begin
+	select inventoryWarning_seq.nextval
+	into :new.id
+	from dual;
+end;
+/
+
+
+drop trigger lowAmount;
+
+create or replace trigger lowAmount
+before update on inventory
+for each row
+when (new.amount<11)
+declare
+	item_id number;
+	amount number;
+	price number;
+	name varchar2(20);
+begin
+	amount:= :new.amount;
+
+	item_id:= :old.id;
+	price:= :old.price;
+	name:= :old.name;
+	if :old.amount>10 and :new.amount<11 then
+		insert into inventoryWarning values(item_id,name,amount,price);
+	else
+		update inventoryWarning
+		set amount= :new.amount
+		where name=name;
+	end if;	
+end;
+/
+
+
+drop procedure updateChefInventory;
+
+create or replace procedure updateChefInventory(item_id in number, retrieve_amount in number,result out varchar) is
+check_amount number;
+final_amount number;
+
+begin
+	
+	select amount into check_amount
+	from inventory
+	where id=item_id;
+
+	if check_amount<retrieve_amount then
+		result:='Low Amount';
+	else
+		final_amount:=check_amount-retrieve_amount;
+		
+		update inventory
+		set amount= final_amount
+		where id=item_id;
+
+		result:='Successful';
+	end if;
+	dbms_output.put_line(result);
 end;
 /
 	
