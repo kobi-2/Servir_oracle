@@ -30,6 +30,7 @@ public final class Manager_Menu extends javax.swing.JFrame {
     /**
      * Creates new form manager_menu
      */
+    CallableStatement callstate;
     public Manager_Menu() {
         initComponents();
         //MySqlConnection();
@@ -288,25 +289,24 @@ public final class Manager_Menu extends javax.swing.JFrame {
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         if (textfield_name != null || textfield_price != null || textfield_amount != null) {
-            String qry;
-            PreparedStatement ps;
+//            String qry;
+//            PreparedStatement ps;
             Connection conn = OracleConnection();
             try {
-                qry = "update menu set Name=?, Price=?,Amount=? where id=?";
-                ps = conn.prepareStatement(qry);
+                callstate = conn.prepareCall("{call updateManagerMenu(?,?,?)}");
+                callstate.registerOutParameter(3, Types.VARCHAR);
 
-                ps.setString(1, textfield_name.getText());
-                ps.setInt(2, Integer.parseInt(textfield_price.getText()));
-                ps.setInt(3, Integer.parseInt(textfield_amount.getText()));
-                ps.setInt(4, Integer.parseInt(textfield_id.getText()));
+                int newPrice = Integer.parseInt(textfield_price.getText());
+                int newId = Integer.parseInt(textfield_id.getText());
 
-                int res = ps.executeUpdate();
+                callstate.setInt(1,newId);
+                callstate.setInt(2,newPrice);
+
+                callstate.execute();
                 fillTable();
-                if (res >= 1) {
-                    //JOptionPane.showMessageDialog(null, res+" Number of Item"+ " inserted into database .....");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Item Insertion Failed ....");
-                }
+
+                String finalResult= callstate.getString(3).toString();
+                JOptionPane.showMessageDialog(null, finalResult);
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -320,25 +320,22 @@ public final class Manager_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_update_buttonActionPerformed
 
     private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
-//        if (textfield_id.getText().equals("")) {
-//               JOptionPane.showMessageDialog(null, "Please Enter the item id");
-//        }else{             
+           
         try {
-            String qry = "delete from menu where id=?";
             Connection conn = OracleConnection();
-            PreparedStatement ps = conn.prepareStatement(qry);
-            ps.setInt(1, Integer.parseInt(textfield_id.getText()));
-            int res = ps.executeUpdate();
+            callstate = conn.prepareCall("{call deleteMenu(?)}");               
+            int newId = Integer.parseInt(textfield_id.getText());
+            callstate.setInt(1,newId);
+            callstate.execute();
             fillTable();
-            if (res >= 1) {
-                //JOptionPane.showMessageDialog(null, "Item Deleted Successfully ....");    
-            } else {
-                JOptionPane.showMessageDialog(null, "Item Deletion failed ....");
-            }
         } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        //}
+        textfield_id.setText("");
+        textfield_name.setText("");
+        textfield_amount.setText("");
+        textfield_price.setText("");
+        
     }//GEN-LAST:event_delete_buttonActionPerformed
 
     private void managerInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerInterfaceActionPerformed
