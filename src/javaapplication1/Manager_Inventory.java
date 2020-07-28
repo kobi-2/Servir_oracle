@@ -31,6 +31,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
     /**
      * Creates new form manager_main_ui
      */
+    CallableStatement callstate;
     public Manager_Inventory() {
         initComponents();
         fillTable();
@@ -296,9 +297,8 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         
         
         if (textfield_id.getText() != null || textfield_name != null || textfield_amount != null || textfield_price != null) {
-            try {
+            try {              
                 Connection conn = OracleConnection();
-
                 PreparedStatement ps = conn.prepareStatement("insert into inventory" + "(Name,Amount,Price) values (?,?,?)");
                 //ps.setInt(1, Integer.parseInt(textfield_id.getText()));
                 ps.setString(1, textfield_name.getText());
@@ -336,17 +336,12 @@ public final class Manager_Inventory extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please Enter the item id");
         } else {
             try {
-                String qry = "delete from inventory where id=?";
                 Connection conn = OracleConnection();
-                PreparedStatement ps = conn.prepareStatement(qry);
-                ps.setInt(1, Integer.parseInt(textfield_id.getText()));
-                int res = ps.executeUpdate();
+                callstate = conn.prepareCall("{call deleteInventory(?)}");               
+                int newId = Integer.parseInt(textfield_id.getText());
+                callstate.setInt(1,newId);
+                callstate.execute();
                 fillTable();
-                if (res >= 1) {
-                    //JOptionPane.showMessageDialog(null, "Item Deleted Successfully ....");    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Item Deletion failed ....");
-                }
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }

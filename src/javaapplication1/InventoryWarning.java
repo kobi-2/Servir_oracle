@@ -225,8 +225,6 @@ public class InventoryWarning extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
         if ((textfield_id.getText() != null && textfield_name != null) && textfield_amount != null) {
-            //String qry;
-            //PreparedStatement ps;
             Connection conn = OracleConnection();
             try {
                 callstate = conn.prepareCall("{call updateManagerInventory(?,?,?)}");
@@ -239,6 +237,7 @@ public class InventoryWarning extends javax.swing.JFrame {
                 callstate.setInt(2,newAmount);
 
                 callstate.execute();
+                fillTable();
 
                 String finalResult= callstate.getString(3).toString();
                 JOptionPane.showMessageDialog(null, finalResult);

@@ -166,6 +166,43 @@ begin
 end;
 /
 
+CREATE OR REPLACE PROCEDURE deleteInventory(x IN number)
+AS
+BEGIN
+    DELETE FROM inventory WHERE id = x;
+
+END;
+/
+
+CREATE OR REPLACE PROCEDURE deleteMenu(x IN number)
+AS
+BEGIN
+    DELETE FROM menu WHERE id = x;
+
+END;
+/
+
+create or replace procedure updateManagerMenu(item_id in number, new_price in number,result out varchar) is
+curr_price number;
+final_price number;
+
+begin
+
+	update menu
+	set price= new_price
+	where id=item_id;
+
+	result:='Successful';
+	dbms_output.put_line(result);
+
+	
+end;
+/
+
+
+
+
+
 
 
 	
