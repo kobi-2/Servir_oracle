@@ -77,7 +77,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         textfield_id.setText(Integer.toString(retrieveData().get(index).getId()));
         textfield_name.setText(retrieveData().get(index).getName());
         textfield_amount.setText(Integer.toString(retrieveData().get(index).getAmount()));
-        textfield_supplierid.setText(Integer.toString(retrieveData().get(index).getSupplierid()));
+        textfield_price.setText(Integer.toString(retrieveData().get(index).getPrice()));
     }
 
     public void fillTable() {
@@ -87,7 +87,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         model.setRowCount(0); // Empty/clear the table
         
         for (InventoryBean inventory : al) {
-            Object row[] = {inventory.getId(), inventory.getName(), inventory.getAmount(), inventory.getSupplierid()};
+            Object row[] = {inventory.getId(), inventory.getName(), inventory.getAmount(), inventory.getPrice()};
             model.addRow(row);
         }
     }
@@ -110,13 +110,12 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         textfield_name = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         textfield_amount = new javax.swing.JTextField();
-        textfield_supplierid = new javax.swing.JTextField();
+        textfield_price = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         textfield_search = new javax.swing.JTextField();
         managerInterface = new javax.swing.JButton();
         delete_button = new javax.swing.JButton();
-        update_button = new javax.swing.JButton();
         insert_button = new javax.swing.JButton();
         clear_button = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -136,7 +135,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Amount", "Supplier ID"
+                "ID", "Name", "Amount", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -189,12 +188,12 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         });
         jPanel1.add(textfield_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 608, -1));
 
-        textfield_supplierid.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jPanel1.add(textfield_supplierid, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 608, -1));
+        textfield_price.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jPanel1.add(textfield_price, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 608, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Supplier ID      :");
+        jLabel11.setText("Unit Price        :");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 245, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -231,16 +230,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 delete_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(delete_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 400, 295, -1));
-
-        update_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        update_button.setText("Update");
-        update_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update_buttonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(update_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 330, 295, -1));
+        jPanel1.add(delete_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 360, 295, -1));
 
         insert_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         insert_button.setText("Insert");
@@ -249,7 +239,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 insert_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(insert_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 260, 295, -1));
+        jPanel1.add(insert_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 300, 295, -1));
 
         clear_button.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         clear_button.setText("Clear");
@@ -258,7 +248,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 clear_buttonActionPerformed(evt);
             }
         });
-        jPanel1.add(clear_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 190, 295, -1));
+        jPanel1.add(clear_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 230, 295, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/new bg.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -299,21 +289,21 @@ public final class Manager_Inventory extends javax.swing.JFrame {
         textfield_id.setText("");
         textfield_name.setText("");
         textfield_amount.setText("");
-        textfield_supplierid.setText("");
+        textfield_price.setText("");
     }//GEN-LAST:event_clear_buttonActionPerformed
 
     private void insert_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insert_buttonActionPerformed
         
         
-        if (textfield_id.getText() != null || textfield_name != null || textfield_amount != null || textfield_supplierid != null) {
+        if (textfield_id.getText() != null || textfield_name != null || textfield_amount != null || textfield_price != null) {
             try {
                 Connection conn = OracleConnection();
 
-                PreparedStatement ps = conn.prepareStatement("insert into inventory" + "(Name,Amount,Supplier_ID) values (?,?,?)");
+                PreparedStatement ps = conn.prepareStatement("insert into inventory" + "(Name,Amount,Price) values (?,?,?)");
                 //ps.setInt(1, Integer.parseInt(textfield_id.getText()));
                 ps.setString(1, textfield_name.getText());
                 ps.setInt(2, Integer.parseInt(textfield_amount.getText()));
-                ps.setInt(3, Integer.parseInt(textfield_supplierid.getText()));
+                ps.setInt(3, Integer.parseInt(textfield_price.getText()));
 
                 int res = ps.executeUpdate();
                 fillTable();
@@ -328,47 +318,13 @@ public final class Manager_Inventory extends javax.swing.JFrame {
             textfield_id.setText("");
             textfield_name.setText("");
             textfield_amount.setText("");
-            textfield_supplierid.setText("");
+            textfield_price.setText("");
 
         } else {
             JOptionPane.showMessageDialog(null, "All fields are compulsory ....");
         }
 
     }//GEN-LAST:event_insert_buttonActionPerformed
-
-    private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
-        if (textfield_id.getText() != null || textfield_name != null || textfield_amount != null || textfield_supplierid != null) {
-            String qry;
-            PreparedStatement ps;
-            Connection conn = OracleConnection();
-            try {
-                qry = "update inventory set Name=?, Amount=?,Supplier_ID=? where id=?";
-                ps = conn.prepareStatement(qry);
-
-                ps.setString(1, textfield_name.getText());
-                ps.setInt(2, Integer.parseInt(textfield_amount.getText()));
-                ps.setInt(3, Integer.parseInt(textfield_supplierid.getText()));
-                ps.setInt(4, Integer.parseInt(textfield_id.getText()));
-
-                int res = ps.executeUpdate();
-                fillTable();
-                if (res >= 1) {
-                    //JOptionPane.showMessageDialog(null, res+" Number of Item"
-                    //+ " inserted into database .....");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Item Insertion Failed ....");
-                }
-            } catch (HeadlessException | NumberFormatException | SQLException e) {
-                JOptionPane.showMessageDialog(null, e);
-            }
-            textfield_id.setText("");
-            textfield_name.setText("");
-            textfield_amount.setText("");
-            textfield_supplierid.setText("");
-        } else {
-            JOptionPane.showMessageDialog(null, "All fields are mandatory.......");
-        }
-    }//GEN-LAST:event_update_buttonActionPerformed
 
     private void managerInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerInterfaceActionPerformed
         dispose();
@@ -395,6 +351,10 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
+        textfield_id.setText("");
+        textfield_name.setText("");
+        textfield_amount.setText("");
+        textfield_price.setText("");
     }//GEN-LAST:event_delete_buttonActionPerformed
 
     private void textfield_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textfield_searchKeyReleased
@@ -420,7 +380,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 row[0] = al.get(i).getId();
                 row[1] = al.get(i).getName();
                 row[2] = al.get(i).getAmount();
-                row[3] = al.get(i).getSupplierid();
+                row[3] = al.get(i).getPrice();
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -484,8 +444,7 @@ public final class Manager_Inventory extends javax.swing.JFrame {
     private javax.swing.JTextField textfield_amount;
     private javax.swing.JTextField textfield_id;
     private javax.swing.JTextField textfield_name;
+    private javax.swing.JTextField textfield_price;
     private javax.swing.JTextField textfield_search;
-    private javax.swing.JTextField textfield_supplierid;
-    private javax.swing.JButton update_button;
     // End of variables declaration//GEN-END:variables
 }

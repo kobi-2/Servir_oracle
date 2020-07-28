@@ -83,18 +83,6 @@ begin
 end;
 /
 
-create sequence inventoryWarning_seq start with 1;
-
-create or replace trigger id_increment_item_warning
-before insert on inventoryWarning
-for each row
-begin
-	select inventoryWarning_seq.nextval
-	into :new.id
-	from dual;
-end;
-/
-
 
 drop trigger lowAmount;
 
@@ -150,4 +138,34 @@ begin
 	dbms_output.put_line(result);
 end;
 /
+
+drop procedure updateManagerInventory;
+
+create or replace procedure updateManagerInventory(item_id in number, added_amount in number,result out varchar) is
+available_amount number;
+final_amount number;
+
+begin
+	select amount into available_amount
+	from inventoryWarning
+	where id=item_id;
+
+	final_amount := available_amount + added_amount;
+		
+	update inventory
+	set amount= final_amount
+	where id=item_id;
+
+	delete from inventoryWarning
+	where id = item_id;
+
+	result:='Successful';
+	dbms_output.put_line(result);
+
+	
+end;
+/
+
+
+
 	

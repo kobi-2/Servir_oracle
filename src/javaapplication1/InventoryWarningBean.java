@@ -7,14 +7,15 @@ package javaapplication1;
 
 /**
  *
- * @author Tech Land
-*/
-public class InventoryBean {
+ * @author shehr
+ */
+public class InventoryWarningBean {
     private int id;
     private String name;
     private int amount;
     private int price;
-    public InventoryBean(int id, String name, int amount, int price) {
+    
+    public InventoryWarningBean(int id, String name, int amount, int price) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -52,5 +53,4 @@ public class InventoryBean {
     public void setPrice(int price) {
         this.price = price;
     }
-    
 }
