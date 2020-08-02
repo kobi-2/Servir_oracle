@@ -360,9 +360,8 @@ insert into discount values('5.0', 5000, 5.0);
 -- select * from discount;
 
 
-
-
 -- getLastDiscDate function; returns the last date of getting discounted; if nothing found returns id_generation_date from customer table
+
 create or replace function getLastDiscDate(m_customer_id in number)
 return date
 as
