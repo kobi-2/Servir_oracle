@@ -205,4 +205,49 @@ end;
 
 
 
+-- ----------------------------------------------------------------------------------
+-- Customer ID fetching and/or creating when loging in
+-- Has exception
+-- ----------------------------------------------------------------------------------
+
+create or replace function getCustomerID (m_name in varchar2, m_phone_no in number)
+return number
+as
+c_id number;
+begin
+
+-- selecting customer id. If not found, should throw exception
+  select customer_id into c_id from customer where phone_no = m_phone_no;
+  return c_id;
+
+  exception
+
+    when no_data_found then
+    -- throws exception for no entry found. so  creating one and returning that
+      dbms_output.put_line('no customer id found. creating new one...');
+      insert into customer(name, phone_no, id_generation_date) values(m_name, m_phone_no, sysdate);
+      select customer_id into c_id from customer where phone_no = m_phone_no;
+      return c_id;
+
+    when others then
+      dbms_output.put_line('Something Went Wrong!');
+      return -1;
+      -- -1 is serving as an error code
+
+end;
+/
+
+
+show errors;
+
+
+
+
+
+
+
+
+
+
+
 	
