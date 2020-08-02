@@ -31,6 +31,8 @@ public class Customer_Cart extends javax.swing.JFrame {
     /**
      * Creates new form Customer_Cart
      */
+    public static String currentCustID;
+    
     public Customer_Cart() {
         initComponents();
         fillTable();
@@ -134,6 +136,7 @@ public class Customer_Cart extends javax.swing.JFrame {
         textfield_name = new javax.swing.JTextField();
         textfield_price = new javax.swing.JTextField();
         textfield_Tprice = new javax.swing.JTextField();
+        custID = new javax.swing.JLabel();
 
         jTable2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -166,7 +169,6 @@ public class Customer_Cart extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(getMaximumSize());
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -281,6 +283,9 @@ public class Customer_Cart extends javax.swing.JFrame {
 
         textfield_Tprice.setText("jTextField2");
         jPanel1.add(textfield_Tprice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 350, -1, -1));
+
+        custID.setText("custID");
+        jPanel1.add(custID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -431,7 +436,7 @@ public class Customer_Cart extends javax.swing.JFrame {
         int amount = retrieveData().get(index).getAmount();
         price = price / amount;
         String pri = Integer.toString(price);
-        textfield_price.setText(pri);
+        textfield_price.setText(pri);            
     }
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -473,6 +478,7 @@ public class Customer_Cart extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        currentCustID = args[0];
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Customer_Cart().setVisible(true);
@@ -483,6 +489,7 @@ public class Customer_Cart extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add_Button;
     private javax.swing.JButton Done_Button;
+    private javax.swing.JLabel custID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
