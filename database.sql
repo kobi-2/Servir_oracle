@@ -370,8 +370,8 @@ insert into discount values('5.0', 5000, 5.0);
 
 
 
--- getLastDiscDate function; returns the last date of getting discounted; if nothing found returns sysdate
-create or replace function getLastDiscDate(m_custimer_id in number)
+-- getLastDiscDate function; returns the last date of getting discounted; if nothing found returns id_generation_date from customer table
+create or replace function getLastDiscDate(m_customer_id in number)
 return date
 as
 m_lastDiscDate date;
@@ -379,11 +379,13 @@ begin
 
   select max(order_date) into m_lastDiscDate
   from total_sales
-  where customer_id = m_custimer_id and had_disc = 1;
+  where customer_id = m_customer_id and had_disc = 1;
 
   if m_lastDiscDate is null then
-    dbms_output.put_line('no last discount date found. returning sysdate...');
-    m_lastDiscDate := sysdate;
+    dbms_output.put_line('no last discount date found. returning id_genration_date...');
+    select id_generation_date into m_lastDiscDate
+    from customer
+    where customer_id = m_customer_id;
   end if;
 
   return m_lastDiscDate;
