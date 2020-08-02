@@ -24,6 +24,8 @@ public class Customer_Login extends javax.swing.JFrame {
     /**
      * Creates new form Customer_Login
      */
+    
+    CallableStatement callState;
     public Customer_Login() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -144,26 +146,22 @@ public class Customer_Login extends javax.swing.JFrame {
         if (Name != null || Phone_No.getText() != null) {
             try {
                 Connection conn = OracleConnection();
-                
+                callState = conn.prepareCall("{call getCustID(?,?,?)}");
+                callState.registerOutParameter(3, Types.INTEGER);
+
                 int number = Integer.parseInt(Phone_No.getText()) ;
-                String qry = "Select count(*) from customer where phone_no = " + number;
-                Statement st = conn.createStatement();            
-                ResultSet rs = st.executeQuery(qry);
-                rs.next();
-                if(rs.getInt(1) == 0){
-                    PreparedStatement ps2 = conn.prepareStatement("insert into customer" + "(Name,Phone_No,id_generation_date) values (?,?,sysdate)");
-                    ps2.setString(1, Name.getText());
-                    ps2.setInt(2, Integer.parseInt(Phone_No.getText()));            
-                    int res2 = ps2.executeUpdate();
-                    if (res2 >= 1) {
-                        //JOptionPane.showMessageDialog(null, res+" Number of items"+ " inserted into database .....");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Customer Information Insertion Failed ....");
-                    }
-                } 
+                String name = Name.getText();
+                
+                callState.setString(1,name);
+                callState.setInt(2,number);
+
+                callState.execute();                
+                int customerID = callState.getInt(3);              
+                //JOptionPane.showMessageDialog(null, customerID);
                                     
                 dispose();
                 new CustomerInterface().setVisible(true);
+                
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }

@@ -29,6 +29,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     /**
      * Creates new form CustomerInterface
      */
+   
     public CustomerInterface() {
         initComponents();
         fillTable();

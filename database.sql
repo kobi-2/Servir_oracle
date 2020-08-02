@@ -64,6 +64,8 @@ begin
 end;
 /
 
+drop table customer;
+
 create table customer(
 	customer_id number primary key,
 	name varchar2(20),
@@ -71,6 +73,7 @@ create table customer(
 	id_generation_date date
 );
 
+drop sequence customer_seq;
 create sequence customer_seq start with 1;
 
 create or replace trigger id_increment_customer
@@ -210,32 +213,20 @@ end;
 -- Has exception
 -- ----------------------------------------------------------------------------------
 
-create or replace function getCustomerID (m_name in varchar2, m_phone_no in number)
-return number
+create or replace procedure getcustID(name in varchar2, pnum in number, cid out number)
 as
-c_id number;
-begin
-
--- selecting customer id. If not found, should throw exception
-  select customer_id into c_id from customer where phone_no = m_phone_no;
-  return c_id;
-
-  exception
-
-    when no_data_found then
-    -- throws exception for no entry found. so  creating one and returning that
-      dbms_output.put_line('no customer id found. creating new one...');
-      insert into customer(name, phone_no, id_generation_date) values(m_name, m_phone_no, sysdate);
-      select customer_id into c_id from customer where phone_no = m_phone_no;
-      return c_id;
-
-    when others then
-      dbms_output.put_line('Something Went Wrong!');
-      return -1;
-      -- -1 is serving as an error code
-
+tot number;
+begin 
+	select count(*) into tot from customer where phone_no = pnum;
+	if (tot= 0) then
+		insert into customer (name, phone_no, id_generation_date) values (name, pnum, sysdate);
+		select customer_id into cid from customer where phone_no = pnum;
+	else
+		select customer_id into cid from customer where phone_no = pnum;
+	end if;
 end;
 /
+	 
 
 
 show errors;
@@ -320,7 +311,7 @@ create or replace function insert_into_total_sales (
 
   begin
 
-    m_slip_no := total_sales_seq.nextval;
+    select total_sales_seq.nextval into m_slip_no from dual;
     dbms_output.put_line('total_sales_seq: ' || m_slip_no);
     m_order_date := sysdate;
 
@@ -371,7 +362,7 @@ insert into discount values('5.0', 5000, 5.0);
 
 
 -- getLastDiscDate function; returns the last date of getting discounted; if nothing found returns sysdate
-create or replace function getLastDiscDate(m_custimer_id in number)
+create or replace function getLastDiscDate(m_customer_id in number)
 return date
 as
 m_lastDiscDate date;
@@ -379,7 +370,7 @@ begin
 
   select max(order_date) into m_lastDiscDate
   from total_sales
-  where customer_id = m_custimer_id and had_disc = 1;
+  where customer_id = m_customer_id and had_disc = 1;
 
   if m_lastDiscDate is null then
     dbms_output.put_line('no last discount date found. returning sysdate...');
@@ -415,7 +406,7 @@ begin
 
   select sum(total_payable) into m_sum_total_payable 
   from total_sales
-  where customer_id = m_custimer_id and order_date > m_lastDiscDate;
+  where customer_id = m_customer_id and order_date > m_lastDiscDate;
 
   if m_sum_total_payable is null then
     m_sum_total_payable := 0.0;
@@ -435,6 +426,8 @@ end;
 /
 
 show errors;
+
+commit;
 
 
 
