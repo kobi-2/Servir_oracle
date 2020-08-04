@@ -310,7 +310,6 @@ public class Customer_Cart extends javax.swing.JFrame {
     private void Done_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Done_ButtonMouseClicked
         //generate bill
         dispose();
-
     }//GEN-LAST:event_Done_ButtonMouseClicked
 
     private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
@@ -412,16 +411,37 @@ public class Customer_Cart extends javax.swing.JFrame {
             ResultSet result = ps1.executeQuery();
             result.next();
             String amount = result.getString(1);
-
+            
+            // this part is for getting the customer id value which has been placed in the 
+            //currentcustomerid variable
+            int currentCustomerID = 0;
+            String firstqry = "select customer_id from temporary_customer";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(firstqry);
+            rs.next();
+            currentCustomerID = rs.getInt(1);
+            
+            JOptionPane.showMessageDialog(null, "cust id " + currentCustomerID);
+            
             if (amount != null) {
                 JOptionPane.showMessageDialog(null, "Please pay " + amount + " BDT.");
             } else {
                 JOptionPane.showMessageDialog(null, "Please pay 0 BDT.");
             }
 
+            //do the calculations in this part
+            //do the calculations in this part
+            //do the calculations in this part
+            
             String qry = "delete from cart";
             PreparedStatement ps = conn.prepareStatement(qry);
             int res = ps.executeUpdate();
+            
+            // deleting the temporary customer id
+            String qryNew = "delete from temporary_customer";
+            PreparedStatement psNew = conn.prepareStatement(qryNew);
+            int resNew = psNew.executeUpdate();
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -478,7 +498,6 @@ public class Customer_Cart extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        currentCustID = args[0];
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Customer_Cart().setVisible(true);

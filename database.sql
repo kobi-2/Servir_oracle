@@ -73,6 +73,10 @@ create table customer(
 	id_generation_date date
 );
 
+create table temporary_customer(
+	customer_id number
+);
+
 drop sequence customer_seq;
 create sequence customer_seq start with 1;
 
@@ -224,6 +228,7 @@ begin
 	else
 		select customer_id into cid from customer where phone_no = pnum;
 	end if;
+	insert into temporary_customer values(cid);
 end;
 /
 	 

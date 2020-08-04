@@ -369,6 +369,7 @@ public class CustomerInterface extends javax.swing.JFrame {
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         // TODO add your handling code here:
         dispose();
+        
         new User_Selection().setVisible(true);
     }//GEN-LAST:event_backMouseClicked
 
