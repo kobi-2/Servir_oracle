@@ -383,7 +383,6 @@ begin
     from customer
     where customer_id = m_customer_id;
   end if;
-
   return m_lastDiscDate;
 
 end;

@@ -31,7 +31,7 @@ public class Customer_Cart extends javax.swing.JFrame {
     /**
      * Creates new form Customer_Cart
      */
-    public static String currentCustID;
+    CallableStatement callstate;
     
     public Customer_Cart() {
         initComponents();
@@ -422,16 +422,35 @@ public class Customer_Cart extends javax.swing.JFrame {
             currentCustomerID = rs.getInt(1);
             
             JOptionPane.showMessageDialog(null, "cust id " + currentCustomerID);
+
+           //call the insert into total_sales table here
+           //calling pl/sql function from jdbc might not be possible
+           //then you need to convert the function to a procedure
+           //although i saw in quite a few stackoverflow questions that
+           //pl/sql function can be called from java.
+           //for that the syntax needs to be like 
+           //callstate = conn.prepareCall ("{?=call functionName(#? = #params, separated by comma)}");
+           //since there's no out param, so registerOutParameter might not be necessary
+           //but i think if possible, it's better to convert the function to procedure
+           
+           //this part is to get discount percentage
+            callstate = conn.prepareCall("{call getDisc(?,?)}");
+            callstate.registerOutParameter(2, Types.VARCHAR);
+
+            callstate.setInt(1,currentCustomerID);
+            callstate.execute();                
+            String discPercentage = callstate.getString(2);
             
-            if (amount != null) {
-                JOptionPane.showMessageDialog(null, "Please pay " + amount + " BDT.");
+            double discountPercentage = Double.parseDouble(discPercentage);
+            double finalAmount = Double.parseDouble(amount);
+            
+            finalAmount = finalAmount - finalAmount * discountPercentage;
+            
+            if (finalAmount != 0.0) {
+                JOptionPane.showMessageDialog(null, "Please pay " + finalAmount + " BDT.");
             } else {
                 JOptionPane.showMessageDialog(null, "Please pay 0 BDT.");
             }
-
-            //do the calculations in this part
-            //do the calculations in this part
-            //do the calculations in this part
             
             String qry = "delete from cart";
             PreparedStatement ps = conn.prepareStatement(qry);
