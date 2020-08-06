@@ -7,6 +7,10 @@ disc;
 connect shehreen/oliveoil1000;
 
 
+set linesize 200;
+set serveroutput on size 100000;
+
+
 
 create table inventory(
 	id number primary key,
