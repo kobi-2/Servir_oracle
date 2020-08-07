@@ -31,10 +31,8 @@ public class InventoryWarning extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -223,7 +221,6 @@ public class InventoryWarning extends javax.swing.JFrame {
     }//GEN-LAST:event_textfield_amountActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        // TODO add your handling code here:
         if ((textfield_id.getText() != null && textfield_name != null) && textfield_amount != null) {
             Connection conn = OracleConnection();
             try {
@@ -241,8 +238,6 @@ public class InventoryWarning extends javax.swing.JFrame {
 
                 String finalResult= callstate.getString(3).toString();
                 JOptionPane.showMessageDialog(null, finalResult);
-
-                //fillTable();
             } 
             catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -259,7 +254,6 @@ public class InventoryWarning extends javax.swing.JFrame {
     }//GEN-LAST:event_updateActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
         int ind = jTable1.getSelectedRow();
         showItemToFields(ind);
     }//GEN-LAST:event_jTable1MouseClicked
@@ -274,15 +268,9 @@ public class InventoryWarning extends javax.swing.JFrame {
     }//GEN-LAST:event_Done_ButtonActionPerformed
 
     public void showItemToFields(int index) {
-        //textfield_amount.setText(Integer.toString(retrieveData().get(index).getAmount()));
         textfield_price.setText(Integer.toString(retrieveData().get(index).getPrice()));
         textfield_name.setText(retrieveData().get(index).getName());
         textfield_id.setText(Integer.toString(retrieveData().get(index).getId()));
-        //int price = retrieveData().get(index).getPrice();
-        //int amount = retrieveData().get(index).getAmount();
-        //price = price / amount;
-        //String pri = Integer.toString(price);
-        //textfield_price.setText(pri);
     }
     
     /**

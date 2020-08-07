@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package javaapplication1;
-//import servir_project.UI.FirstPage;
-//import servir_project.UI.Chef_menu;
-//import servir_project.UI.Chef_inventory;
 import javax.swing.*;
 /**
  *

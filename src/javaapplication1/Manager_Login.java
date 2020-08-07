@@ -7,19 +7,11 @@ package javaapplication1;
 
 import java.awt.Font;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-import java.sql.SQLException;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import java.sql.*;
 import javax.swing.JFrame;
 
-//import servir_project.UI.Manager_inventory;
-//import servir_project.UI.Manager_interface;
 /**
  *
  * @author shehr
@@ -138,10 +130,8 @@ public class Manager_Login extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -149,20 +139,17 @@ public class Manager_Login extends javax.swing.JFrame {
         }
     }
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-        // TODO add your handling code here:
         dispose();
 
     }//GEN-LAST:event_cancelMouseClicked
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-        // TODO add your handling code here: 
         Manager_interface mi = new Manager_interface();
         mi.setVisible(true);
         dispose();
     }//GEN-LAST:event_loginMouseClicked
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
         String user = username.getText();
         String pwd = new String(password.getPassword());
 
