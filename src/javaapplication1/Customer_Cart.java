@@ -7,13 +7,6 @@ package javaapplication1;
 //import servir_project.UI.CustomerInterface;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-//import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -25,7 +18,7 @@ import javax.swing.JFrame;
 import oracle.sql.ArrayDescriptor;
 import oracle.sql.ARRAY;
 
-import java.sql.Types;
+//import java.sql.Types;
 import oracle.jdbc.OracleCallableStatement;
 import oracle.jdbc.internal.OracleTypes;
 
@@ -56,7 +49,6 @@ public class Customer_Cart extends javax.swing.JFrame {
             //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -343,11 +335,9 @@ public class Customer_Cart extends javax.swing.JFrame {
 
                 ps.setInt(1, Integer.parseInt(textfield_amount.getText()));
                 ps.setInt(2, Integer.parseInt(textfield_price.getText()));
-                //ps.setString(3, textfield_id.getText());
                 ps.setInt(3, Integer.parseInt(textfield_id.getText()));
 
                 int res = ps.executeUpdate();
-                //fillTable();
                 if (res >= 1) {
                     //JOptionPane.showMessageDialog(null, "Items"+ " have been added.....");
                 } else {
@@ -358,9 +348,6 @@ public class Customer_Cart extends javax.swing.JFrame {
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            //textfield_id1.setText("");
-            //textfield_id.setText("");
-            //textfield_amount.setText("");
         } else {
 
             JOptionPane.showMessageDialog(null, "All fields are mandatory.......");
@@ -376,10 +363,7 @@ public class Customer_Cart extends javax.swing.JFrame {
 
                 ps.setInt(1, Integer.parseInt(textfield_amount.getText()));
                 ps.setInt(2, Integer.parseInt(textfield_id.getText()));
-                //ps.setString(3, textfield_name.getText());
-
                 int res = ps.executeUpdate();
-                //fillTable();
                 if (res >= 1) {
                     //JOptionPane.showMessageDialog(null, "Items"+ " have been added.....");
                 } else {
@@ -390,7 +374,6 @@ public class Customer_Cart extends javax.swing.JFrame {
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            //textfield_id1.setText("");
             textfield_id.setText("");
             textfield_amount.setText("");
             fillTable();
@@ -429,12 +412,7 @@ public class Customer_Cart extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(firstqry);
             rs.next();
             currentCustomerID = rs.getInt(1);
-            
-            JOptionPane.showMessageDialog(null, "cust id " + currentCustomerID);
 
-
-
-           
            //this part is to get discount percentage
             callstate = conn.prepareCall("{call getDisc(?,?)}");
             callstate.registerOutParameter(2, Types.VARCHAR);
@@ -445,31 +423,14 @@ public class Customer_Cart extends javax.swing.JFrame {
             
             double discountPercentage = Double.parseDouble(discPercentage);
             double finalAmount = Double.parseDouble(amount);
+            System.out.println(finalAmount);
             
-            finalAmount = finalAmount - finalAmount * discountPercentage;
-            
-            if (finalAmount != 0.0) {
-                JOptionPane.showMessageDialog(null, "Please pay " + finalAmount + " BDT.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Please pay 0 BDT.");
-            }
-            
-            
+            finalAmount = finalAmount - finalAmount * discountPercentage/100;
+            System.out.println(discountPercentage/100);
+            System.out.println(finalAmount);
 
-
-            
            //calling the insert_into_total_sales function  here
-           
-           /**
-            * calling pl/sql function from jdbc might not be possible
-            * then you need to convert the function to a procedure
-            * although i saw in quite a few stackoverflow questions that
-            * pl/sql function can be called from java.
-            * for that the syntax needs to be like 
-            * callstate = conn.prepareCall ("{?=call functionName(#? = #params, separated by comma)}");
-            * since there's no out param, so registerOutParameter might not be necessary
-            * but i think if possible, it's better to convert the function to procedure
-            */
+
             ArrayList<CartBean> itemsOrderedList = null;
             itemsOrderedList = retrieveData();
             int noOfItems = itemsOrderedList.size();
@@ -483,14 +444,13 @@ public class Customer_Cart extends javax.swing.JFrame {
               itemsOrderedObjects[i] = conn.createStruct( "ALACARTE_DATA_TYPE", new Object[]{ itemsOrderedArray[i].getId(), itemsOrderedArray[i].getName(), itemsOrderedArray[i].getPrice(), itemsOrderedArray[i].getAmount() } );
             }
 
-
             ArrayDescriptor arrDes = ArrayDescriptor.createDescriptor("ALACARTE_TABLE_TYPE", conn);    
             ARRAY arrayToPass = new ARRAY(arrDes, conn, itemsOrderedObjects);
-
+            
             CallableStatement cstmt = (OracleCallableStatement) conn.prepareCall("{? = call insert_into_total_sales(?, ?, ?, ?)}");
 
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setInt(2, currentCustomerID);   //current customer id
+            cstmt.setInt(2, currentCustomerID);   //current customer id           
 
             //should this be rounded to 2 decimal points??
             cstmt.setDouble(3, finalAmount);         // total_payable double/float
@@ -506,10 +466,11 @@ public class Customer_Cart extends javax.swing.JFrame {
             cstmt.executeUpdate();
             int slipNumber = cstmt.getInt(1);
 
-            JOptionPane.showMessageDialog(null, "Your Slip Number:  " + slipNumber);
-
-
-
+            if (finalAmount != 0.0) {
+                JOptionPane.showMessageDialog(null, "Your Slip Number:  " + slipNumber + "\nPlease pay " + finalAmount + " BDT.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Please pay 0 BDT.");
+            }
 
             String qry = "delete from cart";
             PreparedStatement ps = conn.prepareStatement(qry);

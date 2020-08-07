@@ -6,19 +6,9 @@
 package javaapplication1;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-//import javax.swing.UIManager;
-//import java.awt.Font;
-//import com.sun.jdi.connect.spi.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.*;
 import javax.swing.JFrame;
 
@@ -35,17 +25,14 @@ public final class Manager_Inventory extends javax.swing.JFrame {
     public Manager_Inventory() {
         initComponents();
         fillTable();
-        //MySqlConnection();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -300,7 +287,6 @@ public final class Manager_Inventory extends javax.swing.JFrame {
             try {              
                 Connection conn = OracleConnection();
                 PreparedStatement ps = conn.prepareStatement("insert into inventory" + "(Name,Amount,Price) values (?,?,?)");
-                //ps.setInt(1, Integer.parseInt(textfield_id.getText()));
                 ps.setString(1, textfield_name.getText());
                 ps.setInt(2, Integer.parseInt(textfield_amount.getText()));
                 ps.setInt(3, Integer.parseInt(textfield_price.getText()));

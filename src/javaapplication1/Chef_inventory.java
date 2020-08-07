@@ -7,13 +7,6 @@ package javaapplication1;
 
 import java.awt.Font;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -40,10 +33,8 @@ public class Chef_inventory extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -77,7 +68,6 @@ public class Chef_inventory extends javax.swing.JFrame {
     public void showItemToFields(int index) {
         textfield_id.setText(Integer.toString(retrieveData().get(index).getId()));
         textfield_name.setText(retrieveData().get(index).getName());
-        //textfield_amount.setText(Integer.toString(retrieveData().get(index).getAmount()));
     }
 
     public void fillTable() {
@@ -317,7 +307,7 @@ public class Chef_inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_updateActionPerformed
 
     private void textfieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textfieldSearchKeyReleased
-        // TODO add your handling code here:
+
         ArrayList<InventoryBean> al = null;
         al = new ArrayList<>();
         String val = textfieldSearch.getText();
@@ -354,11 +344,11 @@ public class Chef_inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_textfieldSearchActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        // TODO add your handling code here:
+
         textfield_id.setText("");
         textfield_name.setText("");
         textfield_amount.setText("");
-        //textfield_supplierid.setText("");
+
     }//GEN-LAST:event_clearActionPerformed
 
     private void textfield_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfield_nameActionPerformed

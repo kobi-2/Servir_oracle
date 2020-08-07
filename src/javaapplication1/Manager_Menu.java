@@ -6,20 +6,11 @@
 package javaapplication1;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-//import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import javax.swing.JFrame;
-//import javax.swing.UIManager;
-//import java.awt.Font;
 
 /**
  *
@@ -33,7 +24,6 @@ public final class Manager_Menu extends javax.swing.JFrame {
     CallableStatement callstate;
     public Manager_Menu() {
         initComponents();
-        //MySqlConnection();
         fillTable();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -41,10 +31,8 @@ public final class Manager_Menu extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -256,13 +244,11 @@ public final class Manager_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_clear_buttonActionPerformed
 
     private void insert_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insert_buttonActionPerformed
-        //textfield_id!=null || 
         if (textfield_name != null || textfield_price != null || textfield_amount != null) {
             try {
                 Connection conn = OracleConnection();
 
                 PreparedStatement ps = conn.prepareStatement("insert into menu" + "(Name,Price,Amount) values (?,?,?)");
-                //ps.setInt(1, Integer.parseInt(textfield_id.getText()));
                 ps.setString(1, textfield_name.getText());
                 ps.setInt(2, Integer.parseInt(textfield_price.getText()));
                 ps.setInt(3, Integer.parseInt(textfield_amount.getText()));
@@ -278,7 +264,6 @@ public final class Manager_Menu extends javax.swing.JFrame {
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            //textfield_id.setText("");
             textfield_name.setText("");
             textfield_price.setText("");
             textfield_amount.setText("");
@@ -289,8 +274,6 @@ public final class Manager_Menu extends javax.swing.JFrame {
 
     private void update_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_buttonActionPerformed
         if (textfield_name != null || textfield_price != null || textfield_amount != null) {
-//            String qry;
-//            PreparedStatement ps;
             Connection conn = OracleConnection();
             try {
                 callstate = conn.prepareCall("{call updateManagerMenu(?,?,?)}");
@@ -310,7 +293,6 @@ public final class Manager_Menu extends javax.swing.JFrame {
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            //textfield_id.setText("");
             textfield_name.setText("");
             textfield_price.setText("");
             textfield_amount.setText("");

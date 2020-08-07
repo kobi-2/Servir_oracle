@@ -4,15 +4,8 @@
  * and open the template in the editor.
  */
 package javaapplication1;
-//import com.sun.jdi.connect.spi.Connection;
 
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -37,10 +30,8 @@ public final class Chef_menu extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -291,14 +282,12 @@ public final class Chef_menu extends javax.swing.JFrame {
     }//GEN-LAST:event_updateActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        // TODO add your handling code here:
         textfield_id1.setText("");
         textfield_name1.setText("");
         textfield_amount1.setText("");
     }//GEN-LAST:event_clearActionPerformed
 
     private void textfield_search1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textfield_search1KeyReleased
-        // TODO add your handling code here:
         ArrayList<MenuBean> al = null;
         al = new ArrayList<>();
         String val = textfield_search1.getText();

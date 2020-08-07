@@ -5,14 +5,7 @@
  */
 package javaapplication1;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-//import java.sql.SQLException;
 import java.awt.HeadlessException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -39,7 +32,6 @@ public class CustomerInterface extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
 //            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
             return conn;
@@ -275,7 +267,6 @@ public class CustomerInterface extends javax.swing.JFrame {
 
     public void showItemToFields(int index) {
         textfield_id.setText(Integer.toString(retrieveData().get(index).getId()));
-        //textfield_amount.setText(Integer.toString(retrieveData().get(index).getAmount()));
         textfield_name.setText(retrieveData().get(index).getName());
         textfield_price.setText(Integer.toString(retrieveData().get(index).getPrice()));
     }
@@ -313,7 +304,6 @@ public class CustomerInterface extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, e);
                 }
 
-//                    textfield_id.setText("");
                 int price;
                 int amount;
                 amount = Integer.parseInt(textfield_amount.getText());
@@ -325,7 +315,6 @@ public class CustomerInterface extends javax.swing.JFrame {
 
                 String qry1;
                 PreparedStatement ps1;
-                //Connection conn=MySqlConnection();
                 try {
                     qry1 = "insert into cart" + "(id,Name,Price,Amount) values (?,?,?,?)";
                     ps1 = conn.prepareStatement(qry1);
@@ -337,7 +326,6 @@ public class CustomerInterface extends javax.swing.JFrame {
 
                     //if given amount > available, generate insufficient amount-> message   
                     int res1 = ps1.executeUpdate();
-                    //fillTable();
 
                     if (res1 >= 1) {
                         //JOptionPane.showMessageDialog(null, "Items"+ " have been added.....");

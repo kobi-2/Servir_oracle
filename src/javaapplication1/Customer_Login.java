@@ -34,9 +34,7 @@ public class Customer_Login extends javax.swing.JFrame {
     public Connection OracleConnection() {
         Connection conn;
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
-            //JOptionPane.showMessageDialog(null,"Database Connection Successful...");
             return conn;
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
@@ -142,7 +140,6 @@ public class Customer_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_Phone_NoActionPerformed
 
     private void EnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterActionPerformed
-        // TODO add your handling code here:
         if (Name != null || Phone_No.getText() != null) {
             try {
                 Connection conn = OracleConnection();
@@ -156,9 +153,7 @@ public class Customer_Login extends javax.swing.JFrame {
                 callState.setInt(2,number);
 
                 callState.execute();                
-                int customerID = callState.getInt(3);              
-                //JOptionPane.showMessageDialog(null, customerID);
-                                
+                int customerID = callState.getInt(3);                                             
                 dispose();
                 new CustomerInterface().setVisible(true);
                 

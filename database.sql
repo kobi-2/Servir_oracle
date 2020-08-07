@@ -437,6 +437,14 @@ end;
 
 show errors;
 
+
+--------------------
+show items of total_sales table
+--------------------
+
+select x.slip_no, x.order_date, x.customer_id, x.total_payable, x.had_disc, y.*
+from total_sales x, table(x.items_ordered) y;
+
 commit;
 
 
