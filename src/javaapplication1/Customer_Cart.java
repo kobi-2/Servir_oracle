@@ -22,6 +22,15 @@ import java.awt.Font;
 import java.sql.*;
 import javax.swing.JFrame;
 
+import oracle.sql.ArrayDescriptor;
+import oracle.sql.ARRAY;
+
+import java.sql.Types;
+import oracle.jdbc.OracleCallableStatement;
+import oracle.jdbc.internal.OracleTypes;
+
+
+
 /**
  *
  * @author shehr
