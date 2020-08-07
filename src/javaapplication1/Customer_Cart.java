@@ -423,15 +423,8 @@ public class Customer_Cart extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "cust id " + currentCustomerID);
 
-           //call the insert into total_sales table here
-           //calling pl/sql function from jdbc might not be possible
-           //then you need to convert the function to a procedure
-           //although i saw in quite a few stackoverflow questions that
-           //pl/sql function can be called from java.
-           //for that the syntax needs to be like 
-           //callstate = conn.prepareCall ("{?=call functionName(#? = #params, separated by comma)}");
-           //since there's no out param, so registerOutParameter might not be necessary
-           //but i think if possible, it's better to convert the function to procedure
+
+
            
            //this part is to get discount percentage
             callstate = conn.prepareCall("{call getDisc(?,?)}");
@@ -452,6 +445,63 @@ public class Customer_Cart extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please pay 0 BDT.");
             }
             
+            
+
+
+            
+           //calling the insert_into_total_sales function  here
+           
+           /**
+            * calling pl/sql function from jdbc might not be possible
+            * then you need to convert the function to a procedure
+            * although i saw in quite a few stackoverflow questions that
+            * pl/sql function can be called from java.
+            * for that the syntax needs to be like 
+            * callstate = conn.prepareCall ("{?=call functionName(#? = #params, separated by comma)}");
+            * since there's no out param, so registerOutParameter might not be necessary
+            * but i think if possible, it's better to convert the function to procedure
+            */
+            ArrayList<CartBean> itemsOrderedList = null;
+            itemsOrderedList = retrieveData();
+            int noOfItems = itemsOrderedList.size();
+
+            CartBean[] itemsOrderedArray = new CartBean[noOfItems];
+            itemsOrderedArray = itemsOrderedList.toArray(itemsOrderedArray);
+
+
+            Object[] itemsOrderedObjects = new Object[noOfItems];
+            for (int i = 0; i < noOfItems; i++) {
+              itemsOrderedObjects[i] = conn.createStruct( "ALACARTE_DATA_TYPE", new Object[]{ itemsOrderedArray[i].getId(), itemsOrderedArray[i].getName(), itemsOrderedArray[i].getPrice(), itemsOrderedArray[i].getAmount() } );
+            }
+
+
+            ArrayDescriptor arrDes = ArrayDescriptor.createDescriptor("ALACARTE_TABLE_TYPE", conn);    
+            ARRAY arrayToPass = new ARRAY(arrDes, conn, itemsOrderedObjects);
+
+            CallableStatement cstmt = (OracleCallableStatement) conn.prepareCall("{? = CALL insert_into_total_sales(?, ?, ?, ?)}");
+
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setInt(2, currentCustomerID);   //current customer id
+
+            //should this be rounded to 2 decimal points??
+            cstmt.setDouble(3, finalAmount);         // total_payable double/float
+
+            int hadDisc = 0;
+            if( Double.compare(discountPercentage, new Double("0")) > 0 ){
+              hadDisc = 1;
+            }
+            
+            cstmt.setInt(4, hadDisc);               // had discount 0/1
+            cstmt.setArray(5, arrayToPass);        // arrayToPass
+
+            cstmt.executeUpdate();
+            int slipNumber = cstmt.getInt(1);
+
+            JOptionPane.showMessageDialog(null, "Your Slip Number:  " + slipNumber);
+
+
+
+
             String qry = "delete from cart";
             PreparedStatement ps = conn.prepareStatement(qry);
             int res = ps.executeUpdate();
@@ -460,12 +510,14 @@ public class Customer_Cart extends javax.swing.JFrame {
             String qryNew = "delete from temporary_customer";
             PreparedStatement psNew = conn.prepareStatement(qryNew);
             int resNew = psNew.executeUpdate();
+
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
         dispose();
     }//GEN-LAST:event_Done_ButtonActionPerformed
+
 
     public void showItemToFields(int index) {
         textfield_id.setText(Integer.toString(retrieveData().get(index).getId()));
