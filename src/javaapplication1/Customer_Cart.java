@@ -487,7 +487,7 @@ public class Customer_Cart extends javax.swing.JFrame {
             ArrayDescriptor arrDes = ArrayDescriptor.createDescriptor("ALACARTE_TABLE_TYPE", conn);    
             ARRAY arrayToPass = new ARRAY(arrDes, conn, itemsOrderedObjects);
 
-            CallableStatement cstmt = (OracleCallableStatement) conn.prepareCall("{? = CALL insert_into_total_sales(?, ?, ?, ?)}");
+            CallableStatement cstmt = (OracleCallableStatement) conn.prepareCall("{? = call insert_into_total_sales(?, ?, ?, ?)}");
 
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setInt(2, currentCustomerID);   //current customer id
