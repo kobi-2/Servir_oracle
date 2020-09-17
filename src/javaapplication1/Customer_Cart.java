@@ -69,6 +69,10 @@ public class Customer_Cart extends javax.swing.JFrame {
                 CartBean cart = new CartBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(cart);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -89,6 +93,10 @@ public class Customer_Cart extends javax.swing.JFrame {
                 MenuBean menu = new MenuBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(menu);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -344,6 +352,10 @@ public class Customer_Cart extends javax.swing.JFrame {
                     
                     JOptionPane.showMessageDialog(null, "Item deletion Failed ....");
                 }
+                
+                conn.close();
+                ps.close();
+            
 
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -370,6 +382,9 @@ public class Customer_Cart extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(null, "Item deletion Failed ....");
                 }
+                
+                conn.close();
+                ps.close();
 
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -476,11 +491,19 @@ public class Customer_Cart extends javax.swing.JFrame {
             PreparedStatement ps = conn.prepareStatement(qry);
             int res = ps.executeUpdate();
             
-            // deleting the temporary customer id
-            String qryNew = "delete from temporary_customer";
-            PreparedStatement psNew = conn.prepareStatement(qryNew);
-            int resNew = psNew.executeUpdate();
 
+            
+            
+            conn.close();
+            ps.close();
+            
+            cstmt.close();
+            callstate.close();
+            st.close();
+            rs.close();
+            ps1.close();
+            result.close();
+            
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);

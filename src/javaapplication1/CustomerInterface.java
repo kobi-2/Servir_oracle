@@ -215,6 +215,10 @@ public class CustomerInterface extends javax.swing.JFrame {
                 MenuBean menu = new MenuBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(menu);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -235,11 +239,15 @@ public class CustomerInterface extends javax.swing.JFrame {
                 CartBean cart = new CartBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(cart);
             }
-
+            
+            conn.close();
+            st.close();
+            rs.close();
+            
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return al;
+        return al;      
     }
 
     public void fillTable() {
@@ -300,6 +308,11 @@ public class CustomerInterface extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Item adding to cart failed ....");
                     }
+                    
+                    
+                    ps.close();
+            
+            
                 } catch (HeadlessException | NumberFormatException | SQLException e) {
                     JOptionPane.showMessageDialog(null, e);
                 }
@@ -332,6 +345,11 @@ public class CustomerInterface extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Item adding to cart failed ....");
                     }
+                    
+                    
+                    ps1.close();
+                    conn.close();
+                    
                 } catch (HeadlessException | NumberFormatException | SQLException e) {
                     JOptionPane.showMessageDialog(null, e);
                 }
@@ -356,12 +374,27 @@ public class CustomerInterface extends javax.swing.JFrame {
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         // TODO add your handling code here:
-        dispose();
+        //dispose();
         
-        new User_Selection().setVisible(true);
+        //new User_Selection().setVisible(true);
     }//GEN-LAST:event_backMouseClicked
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // deleting the temporary customer id
+        try{
+            Connection conn = OracleConnection();    
+            String qryNew = "delete from temporary_customer";
+            PreparedStatement psNew = conn.prepareStatement(qryNew);
+            int resNew = psNew.executeUpdate();
+            
+            conn.close();
+            psNew.close();
+            
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
         dispose();
         new User_Selection().setVisible(true);
     }//GEN-LAST:event_backActionPerformed

@@ -217,6 +217,10 @@ public final class Chef_menu extends javax.swing.JFrame {
                 MenuBean menu = new MenuBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(menu);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -270,6 +274,10 @@ public final class Chef_menu extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Item Insertion Failed ....");
                 }
+                
+                conn.close();
+                ps.close();
+            
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -313,6 +321,11 @@ public final class Chef_menu extends javax.swing.JFrame {
                 row[3] = al.get(i).getAmount();
                 model.addRow(row);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
+            
         } catch (SQLException e) {
             System.out.println(e);
         }

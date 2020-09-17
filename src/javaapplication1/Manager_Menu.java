@@ -261,6 +261,10 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Item Insertion Failed ....");
                 }
+                
+                conn.close();
+                ps.close();
+                
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -290,6 +294,10 @@ public final class Manager_Menu extends javax.swing.JFrame {
 
                 String finalResult= callstate.getString(3).toString();
                 JOptionPane.showMessageDialog(null, finalResult);
+                
+                conn.close();
+                callstate.close();
+                      
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -310,6 +318,9 @@ public final class Manager_Menu extends javax.swing.JFrame {
             callstate.setInt(1,newId);
             callstate.execute();
             fillTable();
+            
+            conn.close();
+            callstate.close();
         } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -355,6 +366,10 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 row[3] = al.get(i).getAmount();
                 model.addRow(row);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -380,6 +395,10 @@ public final class Manager_Menu extends javax.swing.JFrame {
                 menu = new MenuBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(menu);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);

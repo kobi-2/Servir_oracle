@@ -157,6 +157,9 @@ public class Customer_Login extends javax.swing.JFrame {
                 dispose();
                 new CustomerInterface().setVisible(true);
                 
+                conn.close();
+                callState.close();
+                
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
