@@ -53,6 +53,10 @@ public class InventoryWarning extends javax.swing.JFrame {
                 InventoryWarningBean orderList = new InventoryWarningBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(orderList);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -238,6 +242,9 @@ public class InventoryWarning extends javax.swing.JFrame {
 
                 String finalResult= callstate.getString(3).toString();
                 JOptionPane.showMessageDialog(null, finalResult);
+                
+                conn.close();
+                callstate.close();
             } 
             catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);

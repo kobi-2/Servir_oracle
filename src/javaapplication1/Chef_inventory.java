@@ -39,6 +39,17 @@ public class Chef_inventory extends javax.swing.JFrame {
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
             return null;
+            //OracleConnection();
+            
+            //try{
+              //  conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "shehreen", "oliveoil1000");
+//            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:morcl", "shehreen", "oliveoil1000");
+                //return conn;
+            //} catch(HeadlessException | SQLException ee){
+              //  JOptionPane.showMessageDialog(null, "oracle Connection Failed...");
+               // return null;
+            //}
+           
         }
     }
 
@@ -56,6 +67,8 @@ public class Chef_inventory extends javax.swing.JFrame {
                 al.add(inventory);
             }
             rs.close();
+            st.close();
+            conn.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -291,6 +304,9 @@ public class Chef_inventory extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, finalResult);
 
                 fillTable();
+                
+                conn.close();
+                callstate.close();
 
             } 
             catch (HeadlessException | NumberFormatException | SQLException e) {
@@ -300,6 +316,9 @@ public class Chef_inventory extends javax.swing.JFrame {
             textfield_id.setText("");
             textfield_name.setText("");
             textfield_amount.setText("");
+            
+            
+            
         } else {
             JOptionPane.showMessageDialog(null, "Please select an item");
         }
@@ -334,6 +353,11 @@ public class Chef_inventory extends javax.swing.JFrame {
                 row[3] = al.get(i).getPrice();
                 model.addRow(row);
             }
+            
+            conn.close();
+            ps.close();
+            rs.close();
+            
         } catch (Exception e) {
             System.out.println(e);
         }

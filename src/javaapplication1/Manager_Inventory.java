@@ -53,6 +53,10 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 InventoryBean inventory = new InventoryBean(rs.getInt(1), rs.getString("name"), rs.getInt(3), rs.getInt(4));
                 al.add(inventory);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -298,6 +302,10 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Item Insertion Failed ....");
                 }
+                
+                conn.close();
+                ps.close();
+            
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -328,6 +336,10 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 callstate.setInt(1,newId);
                 callstate.execute();
                 fillTable();
+                
+                conn.close();
+                callstate.close();
+                
             } catch (HeadlessException | NumberFormatException | SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
@@ -364,6 +376,11 @@ public final class Manager_Inventory extends javax.swing.JFrame {
                 row[3] = al.get(i).getPrice();
                 model.addRow(row);
             }
+            
+            conn.close();
+            st.close();
+            rs.close();
+            
         } catch (Exception e) {
             System.out.println(e);
         }
