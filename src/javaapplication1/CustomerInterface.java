@@ -74,7 +74,6 @@ public class CustomerInterface extends javax.swing.JFrame {
         jLabel2.setText("Amount ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(getMaximumSize());
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -148,7 +147,7 @@ public class CustomerInterface extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 925, 580));
 
         back.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        back.setText("Back to Start");
+        back.setText("Log out");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMouseClicked(evt);
