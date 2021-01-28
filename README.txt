@@ -1,4 +1,9 @@
+# Servir
+# A Restaurant Management System
+This is Servir, a restaurant management system written in Java and databasing with Oracle.
 
+
+## Useful Notes:
 **
 run the database.sql file in the local sql plus command prompt, as a system user.
 
